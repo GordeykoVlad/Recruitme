@@ -28,7 +28,6 @@ class RecruitCreate(View):
 
 def test(request, recruit, num):
     one_test = Test.objects.get(pk=num)
-    print(one_test)
     if request.method == 'POST':
         passed_test = PassedTest.objects.create(
             recruit=Recruit.objects.get(name='{}'.format(recruit))

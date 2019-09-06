@@ -21,14 +21,14 @@ class RecruitCreate(View):
 
         if bound_form.is_valid():
             new_recruit = bound_form.save()
-            return redirect('test', recruit=new_recruit)
+            one_test = random.choice(Test.objects.all())
+            return redirect('test', recruit=new_recruit, num=one_test.pk)
         return render(request, 'recruit.html', {'form': bound_form})
 
 
-one_test = random.choice(Test.objects.all())  # Рандом объекта теста, не придумал как сделать иначе
-
-
-def test(request, recruit):
+def test(request, recruit, num):
+    one_test = Test.objects.get(pk=num)
+    print(one_test)
     if request.method == 'POST':
         passed_test = PassedTest.objects.create(
             recruit=Recruit.objects.get(name='{}'.format(recruit))

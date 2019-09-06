@@ -23,7 +23,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('sith/', views.choose_sith, name='chose_sith'),
     path('new_recruit/', views.RecruitCreate.as_view(), name='new_recruit'),
-    path('test/<str:recruit>/', views.test, name='test'),
+    path('test/<str:recruit>/<int:num>', views.test, name='test'),
     path('success/', views.success, name='success'),
     path('sith/<int:pk>', views.ChooseRecruit.as_view(), name='choose_recruit')
 

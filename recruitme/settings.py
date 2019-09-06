@@ -26,7 +26,8 @@ SECRET_KEY = 'k!@3$uid5i^o9m#xz0(b##(x4f0oe%_ish_a=!ah8vpfzy9=-4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['recruitme-testapp.herokuapp.com']
+ALLOWED_HOSTS = ['recruitme-testapp.herokuapp.com',
+                 'localhost']
 
 
 # Application definition

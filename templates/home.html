@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+    <h2> Welcome to Recruit platform! Please choose who are you</h2>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <a href="{% url 'new_recruit' %}"><button type="button" class="btn btn-primary btn-lg btn-block"> Recruit</button></a>
+        <br>
+        <a href="{% url 'chose_sith' %}"><button type="button" class="btn btn-secondary btn-lg btn-block"> Sith</button></a>
+    </div>
+{% endblock %}

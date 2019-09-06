@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+    <h2>Welcome! {{ user }}</h2>
+{% endblock %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+        {% for one_test in test.tasks.all %}
+
+                <label for="{{one_test.pk}}"> {{ one_test }}</label>
+                <div>
+                    <input type="radio" required id="true-{{ one_test.pk }}" name="{{one_test.pk}}" value="true">
+                    <label for="true-{{ one_test.pk }}">Yep</label>
+                </div>
+                <div>
+                    <input type="radio" required id="false-{{ one_test.pk }}" name="{{one_test.pk}}" value="false">
+                    <label for="false-{{ one_test.pk }}">Nope</label>
+                </div>
+        {% endfor %}
+        </div>
+    <button type="submit" class="btn btn-success">Done!</button>
+    </form>
+{% endblock %}

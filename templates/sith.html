@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+    <h2>Sith</h2>
+{%  endblock %}
+
+{% block content %}
+    <h3>Please choose sith</h3>
+     <table class="table">
+     <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Shadow Hands</th>
+            </tr>
+        </thead>
+     <tbody>
+    {% for sith in siths %}
+        <tr>
+            <td class="align-middle">
+                <a href="{% url 'choose_recruit' sith.pk %}">{{ sith.name }}</a>
+            </td>
+            <td>{{ sith.shadowhand.all.count }}</td>
+        </tr>
+    {% endfor %}
+     </tbody>
+     </table>
+
+    <h3>Siths With Hands</h3>
+    <table class="table">
+     <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Shadow Hands</th>
+            </tr>
+        </thead>
+     <tbody>
+    {% for sith in siths %}
+        {% if sith.shadowhand.all.count > 0 %}
+        <tr>
+            <td class="align-middle">
+                <a href="{% url 'choose_recruit' sith.pk %}">{{ sith.name }}</a>
+            </td>
+            <td>{{ sith.shadowhand.all.count }}</td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+     </tbody>
+     </table>
+{% endblock %}

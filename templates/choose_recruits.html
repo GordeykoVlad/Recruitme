@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+    <h2>Welcome, {{ sith.name }}! Please Choose Recruit</h2>
+{%  endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Planet</th>
+                <th>Age</th>
+                <th>Answers</th>
+                <th> Take</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for recruit in recruits %}
+               {% if not recruit.siths.exists %}
+                <tr>
+                    <td class="align-middle">
+                        {{ recruit.recruit.name }}
+                    </td>
+                    <td class="align-middle">{{ recruit.recruit.planet }}</td>
+                    <td class="align-middle">{{ recruit.recruit.age }}</td>
+                    <td >
+                        {% for answer in recruit.answers.all %}
+                            {{ answer.question }}
+                            {{ answer.answer }}
+                            <br>
+                        {% endfor %}
+                        </td>
+                    <td>{% if sith.shadowhand.all.count < 3 %}
+                        <form method="post">
+                         {% csrf_token %}
+                             <button type="submit" class="btn btn-success" id="Shadowhand" name="Shadowhand" value="{{recruit.recruit.name}}">Shadowhand</button>
+                    </form>
+                        {% else %}
+                        <p>You can't take more. You have already 3 &#x1F625;</p>
+                            </td>
+                        {% endif %}
+
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

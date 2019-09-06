@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+    <h2>Recruit</h2>
+{% endblock %}
+
+{% block content %}
+
+    <h3>Please register </h3>
+    <form action="{% url 'new_recruit' %}" method="post">
+        {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {% if field.errors %}
+                        <div class="alert alert-danger">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                {{ field.label }}
+                {{ field }}
+                </div>
+            {% endfor %}
+
+        <button type="submit" class="btn btn-success">Create</button>
+    </form>
+{% endblock %}
